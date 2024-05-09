@@ -1,0 +1,86 @@
+openapi: 3.0.0
+info:
+  title: Pet Tracking API
+  version: 1.0.0
+paths:
+  /pets:
+    get:
+      summary: List all pets
+      operationId: listPets
+      responses:
+        '200':
+          description: A list of pets.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ApiPet'
+    post:
+      summary: Create a pet
+      operationId: createPet
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApiPet'
+      responses:
+        '201':
+          description: Pet created
+    put:
+        summary: Update a pet
+        operationId: updatePet
+        requestBody:
+            required: true
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/ApiPet'
+        responses:
+          '200':
+            description: Pet updated
+  /pets/{ownwerId}:
+    get:
+      summary: Info for a specific pet
+      operationId: showPetById
+      parameters:
+        - name: ownwerId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Expected response to a valid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiPet'
+components:
+  schemas:
+    ApiPet:
+      required:
+        - petType
+        - ownerId
+      properties:
+        petType:
+          type: string
+          enum: [Cat, Dog]
+        ownerId:
+          description: The owner's ID
+          type: integer
+          format: int64
+        trackerType:
+          description: Type of tracker, only dogs can have medium
+          type: string
+          enum: [ small, medium, big ]
+        inZone:
+          description: If the pet is in the power saving zone
+          type: boolean
+        lostTracker:
+          description: If the tracker is lost, only for cats
+          type: boolean
+
+
