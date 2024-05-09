@@ -16,7 +16,7 @@ public class PetFactory {
                 .ownerId(pet.getOwnerId())
                 .trackerType(Trackertype.of(pet.getTrackerType().name()))
                 .inZone(true)
-                .lostTracker(pet.getLostTracker())
+                .lostTracker(pet.getLostTracker() != null ? pet.getLostTracker() : false)
                 .build();
     }
 }

@@ -3,6 +3,7 @@ package com.szp.demo.api;
 import com.szp.demo.model.ApiPet;
 import com.szp.demo.model.PetCount;
 import com.szp.demo.persistence.model.PetCategoryCount;
+import com.szp.demo.persistence.model.PetType;
 import com.szp.demo.service.PetsService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -29,8 +30,27 @@ public class PetsApiController implements PetsApi {
 
     @Override
     public ResponseEntity<Void> createPet(ApiPet pet) {
+        validatePet(pet);
         petsService.createPet(pet);
         return ResponseEntity.ok().build();
+    }
+
+    private void validatePet(ApiPet pet) {
+        if (pet.getOwnerId() == null) {
+            throw new IllegalArgumentException("Owner id is required");
+        }
+        if (pet.getPetType() == null) {
+            throw new IllegalArgumentException("Pet type is required");
+        }
+        if (pet.getTrackerType() == null) {
+            throw new IllegalArgumentException("Tracker type is required");
+        }
+        if(pet.getPetType().equals(ApiPet.PetTypeEnum.CAT) && pet.getTrackerType().equals(ApiPet.TrackerTypeEnum.MEDIUM)){
+            throw new IllegalArgumentException("Cat cannot have medium tracker");
+        }
+        if (pet.getPetType().equals(ApiPet.PetTypeEnum.DOG) && pet.getLostTracker() != null){
+            throw new IllegalArgumentException("Dog cannot lose tracker");
+        }
     }
 
     @Override
@@ -41,7 +61,8 @@ public class PetsApiController implements PetsApi {
                 .lostTracker(pet.isLostTracker())
                 .ownerId(pet.getOwnerId())
                 .inZone(pet.isInZone())
-                .lostTracker(pet.isLostTracker())).collect(Collectors.toList());
+                .lostTracker(pet.getPetType().equals(PetType.CAT)? pet.isLostTracker() : null))
+                .collect(Collectors.toList());
         return list.isEmpty() ? ResponseEntity.noContent().build() : ResponseEntity.ok(list);
     }
 
