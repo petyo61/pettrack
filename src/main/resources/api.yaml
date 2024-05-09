@@ -28,36 +28,25 @@ paths:
       responses:
         '201':
           description: Pet created
-    put:
-        summary: Update a pet
-        operationId: updatePet
-        requestBody:
-            required: true
-            content:
-              application/json:
-                schema:
-                  $ref: '#/components/schemas/ApiPet'
-        responses:
-          '200':
-            description: Pet updated
-  /pets/{ownwerId}:
+  /pets/count:
     get:
-      summary: Info for a specific pet
-      operationId: showPetById
+      summary: Count pets by category
+      operationId: countPets
       parameters:
-        - name: ownwerId
-          in: path
-          required: true
+        - name: inZone
+          in: query
+          description: If the pet is in the power saving zone
+          required: false
           schema:
-            type: integer
-            format: int64
+            type: boolean
       responses:
         '200':
-          description: Expected response to a valid request
+          description: A count of pets.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ApiPet'
+                $ref: '#/components/schemas/PetCount'
+
 components:
   schemas:
     ApiPet:
@@ -82,5 +71,19 @@ components:
         lostTracker:
           description: If the tracker is lost, only for cats
           type: boolean
+
+    PetCount:
+      properties:
+        count:
+          type: integer
+          format: int64
+        dogs:
+          type: integer
+          format: int64
+        cats:
+          type: integer
+          format: int64
+
+
 
 

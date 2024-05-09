@@ -21,6 +21,4 @@ public class Pet {
     private Trackertype trackerType;
     private boolean inZone;
     private boolean lostTracker;
-
-
 }

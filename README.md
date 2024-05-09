@@ -32,9 +32,9 @@ curl --location 'localhost:8080/pets' \
 ```
 curl --location 'localhost:8080/pets'
 ```
-* To get a pet count by category
+* To get a pet count by category inside or outside the zone
 ```
-curl --location 'localhost:8080/pets/count'
+curl --location 'localhost:8080/pets/count?inZone=true'
 ```
 
 ### notes

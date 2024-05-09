@@ -1,6 +1,8 @@
 package com.szp.demo.api;
 
 import com.szp.demo.model.ApiPet;
+import com.szp.demo.model.PetCount;
+import com.szp.demo.persistence.model.PetCategoryCount;
 import com.szp.demo.service.PetsService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -14,6 +16,15 @@ public class PetsApiController implements PetsApi {
 
     public PetsApiController(PetsService petsService) {
         this.petsService = petsService;
+    }
+
+    @Override
+    public ResponseEntity<PetCount> countPets(Boolean inZone) {
+        if (inZone == null) {
+            inZone = false;
+        }
+        PetCategoryCount count = petsService.countPets(inZone);
+        return ResponseEntity.ok(new PetCount().count(count.getAll()).cats(count.getCat()).dogs(count.getDog()));
     }
 
     @Override
