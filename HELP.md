@@ -1,4 +1,8 @@
 # Getting Started
+To build the application, you can use the following command:
+```mvn clean install```
+To run the application, you can use the following command:
+```java -jar target/pet-tracker-demo.jar```
 
 ### Reference Documentation
 For further reference, please consider the following sections:

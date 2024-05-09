@@ -19,7 +19,7 @@ import javax.annotation.Generated;
  * ApiPet
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-05-09T09:44:00.461947+02:00[Europe/Budapest]", comments = "Generator version: 7.5.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-05-09T11:31:28.289091+02:00[Europe/Budapest]", comments = "Generator version: 7.5.0")
 public class ApiPet {
 
   /**
