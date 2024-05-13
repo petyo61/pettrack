@@ -6,14 +6,14 @@ There is no security implemented in this application.
 
 ### build and run
 * To build the application, you can use the following command:
-```mvn clean install```
+```mvn clean package```
 * To run the application, you can use the following command:
 ```java -jar target/pet-tracker-demo.jar```
 
 ### access
 * To access the application, you can use the following URL:
 ```http://localhost:8080```
-* To access H2 console, you can use the following URL:
+* To access H2 console (not part of the application, only for development), you can use the following URL:
 ```http://localhost:8080/h2-console``` the JDBC URL is ```jdbc:h2:mem:petdb```
 ### API examples
 * To add a pet 
@@ -21,9 +21,9 @@ There is no security implemented in this application.
 curl --location 'localhost:8080/pets' \
 --header 'Content-Type: application/json' \
 --data '{
-"petType": "Dog",
+"petType": "Cat",
 "ownerId": 123,
-"trackerType": "medium",
+"trackerType": "small",
 "inZone": true,
 "lostTracker": false
 }
