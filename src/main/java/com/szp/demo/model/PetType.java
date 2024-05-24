@@ -1,4 +1,4 @@
-package com.szp.demo.persistence.model;
+package com.szp.demo.model;
 
 public enum PetType {
     CAT, DOG;

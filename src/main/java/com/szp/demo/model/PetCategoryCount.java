@@ -1,4 +1,4 @@
-package com.szp.demo.persistence.model;
+package com.szp.demo.model;
 
 import lombok.Builder;
 import lombok.Getter;

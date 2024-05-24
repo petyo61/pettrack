@@ -18,23 +18,23 @@ There is no security implemented in this application.
 ### API examples
 * To add a pet 
 ```
-curl --location 'localhost:8080/pets' \
+curl --location 'localhost:8080/api/pets' \
 --header 'Content-Type: application/json' \
 --data '{
-"petType": "Cat",
-"ownerId": 123,
-"trackerType": "small",
-"inZone": true,
-"lostTracker": false
-}
+        "petType": "cat",
+        "ownerId": 1,
+        "trackerType": "small",
+        "inZone": false,
+        "lostTracker": false
+}'
 ```
 * To get all pets
 ```
-curl --location 'localhost:8080/pets'
+curl --location 'localhost:8080/api/pets'
 ```
-* To get a pet count by category inside or outside the zone
+* To get a pet count outside the zone
 ```
-curl --location 'localhost:8080/pets/count?inZone=true'
+curl --location 'localhost:8080/pets/count?inZone=false'
 ```
 
 ### notes
